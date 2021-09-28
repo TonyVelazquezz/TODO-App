@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import Hero from './components/Hero';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const getLocalStorage = () => {
+	const items = localStorage.getItem('items');
+	if (items) {
+		return JSON.parse(localStorage.getItem('items'));
+	} else {
+		return [];
+	}
+};
+
+const getLocalStorageRB = () => {
+	const recycleBin = localStorage.getItem('recycleBin');
+	if (recycleBin) {
+		return JSON.parse(localStorage.getItem('recycleBin'));
+	} else {
+		return [];
+	}
+};
+
+const App = () => {
+	return (
+		<>
+			<main className="h-screen bg-dark_background">
+				<Hero
+					getLocalStorage={getLocalStorage}
+					getLocalStorageRB={getLocalStorageRB}
+				/>
+			</main>
+		</>
+	);
+};
 
 export default App;
