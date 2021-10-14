@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+body {
 	background-color: #292d4f;
 }
 .close__btn:hover {

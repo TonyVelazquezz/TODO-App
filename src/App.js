@@ -21,7 +21,7 @@ const getLocalStorageRB = () => {
 const App = () => {
 	return (
 		<>
-			<main className="h-screen bg-dark_background">
+			<main className="h-screen">
 				<Hero
 					getLocalStorage={getLocalStorage}
 					getLocalStorageRB={getLocalStorageRB}
