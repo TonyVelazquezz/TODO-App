@@ -31,7 +31,6 @@ const TodoItem = ({
 			remove: false,
 		};
 
-		console.log(newTodo);
 		setRecycleBin([newTodo, ...recycleBin]);
 
 		setItems(items.filter(item => item.id !== id));
