@@ -29,6 +29,22 @@ const Hero = ({ getLocalStorage, getLocalStorageRB }) => {
 	};
 
 	useEffect(() => {
+		const allTodos = () => {
+			setFilter(todos);
+		};
+
+		const filterCompleteTodos = () => {
+			setFilter(todos.filter(item => item.status === false));
+		};
+
+		const filterIncompleteTodos = () => {
+			setFilter(todos.filter(item => item.status === true));
+		};
+
+		const filterDeleteTodos = () => {
+			setFilter(recycleBin);
+		};
+
 		filterCompleteTodos();
 		filterIncompleteTodos();
 		filterDeleteTodos();
