@@ -1,9 +1,9 @@
-import Hero from './components/Hero';
+import TodoHero from './components/TodoHero';
 
 const getLocalStorage = () => {
-	const items = localStorage.getItem('items');
-	if (items) {
-		return JSON.parse(localStorage.getItem('items'));
+	const todos = localStorage.getItem('todos');
+	if (todos) {
+		return JSON.parse(localStorage.getItem('todos'));
 	} else {
 		return [];
 	}
@@ -22,7 +22,7 @@ const App = () => {
 	return (
 		<>
 			<main className="h-screen">
-				<Hero
+				<TodoHero
 					getLocalStorage={getLocalStorage}
 					getLocalStorageRB={getLocalStorageRB}
 				/>

@@ -24,3 +24,6 @@ body {
 .active {
 	color: #37a7ff;
 }
+.text-shadow {
+	text-shadow: 2px 2px 2px #26105a;
+}

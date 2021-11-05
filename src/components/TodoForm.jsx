@@ -1,8 +1,8 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-const Form = ({ text, setText, items, setItems }) => {
-	const textItem = items.map(item => item.task);
+const Form = ({ text, setText, todos, setTodos }) => {
+	const textItem = todos.map(item => item.task);
 
 	const handleSubmit = e => {
 		e.preventDefault();
@@ -15,7 +15,7 @@ const Form = ({ text, setText, items, setItems }) => {
 		};
 
 		if (text.trim().length > 1 && !textItem.includes(text.trim())) {
-			setItems([newItems, ...items]);
+			setTodos([newItems, ...todos]);
 			setText('');
 		}
 	};
@@ -29,7 +29,7 @@ const Form = ({ text, setText, items, setItems }) => {
 				className="bg-primary_color py-1.5 px-3 lg:w-1/2 mx-10 text-text_color text-xl rounded-sm w-full"
 				type="text"
 				name="text"
-				placeholder="Enter your task"
+				placeholder="Enter your todo"
 				autoComplete="off"
 				value={text}
 				onChange={e => setText(e.target.value)}

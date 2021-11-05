@@ -1,6 +1,4 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
-import Swal from 'sweetalert2/';
 import { IoMdTrash } from 'react-icons/io';
 import { VscChromeClose } from 'react-icons/vsc';
 import {
@@ -10,73 +8,16 @@ import {
 } from 'react-icons/ri';
 
 const TodoItem = ({
-	items,
-	setItems,
 	id,
 	task,
 	status,
-	setRecycleBin,
-	recycleBin,
 	remove,
 	toggleView,
+	deleteTodo,
+	restoreTodo,
+	changeStatusTodo,
+	deleteTodoRecycleBin,
 }) => {
-	//Events
-	const taskDelete = () => {
-		const todo = items.filter(item => item.id === id);
-
-		const newTodo = {
-			id: uuidv4(),
-			task: todo[0].task,
-			status: true,
-			remove: false,
-		};
-
-		setRecycleBin([newTodo, ...recycleBin]);
-
-		setItems(items.filter(item => item.id !== id));
-	};
-
-	const taskRestore = () => {
-		const restore = recycleBin.filter(item => item.id === id);
-
-		const restoreTodo = {
-			id: uuidv4(),
-			task: restore[0].task,
-			status: true,
-			remove: true,
-		};
-
-		setItems([restoreTodo, ...items]);
-
-		setRecycleBin(recycleBin.filter(item => item.id !== id));
-	};
-
-	const taskComplete = () => {
-		setItems(
-			items.map(item =>
-				item.id === id ? { ...item, status: !item.status } : item
-			)
-		);
-	};
-
-	const taskRecycleBinDelete = () => {
-		Swal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, delete it!',
-		}).then(result => {
-			if (result.isConfirmed) {
-				Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
-				setRecycleBin(recycleBin.filter(bin => bin.id !== id));
-				toggleView(1);
-			}
-		});
-	};
-
 	return (
 		<>
 			<li
@@ -85,7 +26,7 @@ const TodoItem = ({
 			>
 				<div className="flex gap-3">
 					{remove && (
-						<button onClick={() => taskComplete()}>
+						<button onClick={() => changeStatusTodo(id)}>
 							{status ? (
 								<RiCheckboxBlankLine className="checkbox text-secondary_color text-xl" />
 							) : (
@@ -104,7 +45,7 @@ const TodoItem = ({
 				</div>
 
 				{!status && (
-					<button onClick={() => taskDelete()}>
+					<button onClick={() => deleteTodo(id)}>
 						<IoMdTrash className="close__btn text-secondary_color text-2xl" />
 					</button>
 				)}
@@ -113,13 +54,13 @@ const TodoItem = ({
 					<div className="flex gap-3">
 						<button
 							onClick={() => {
-								taskRestore();
+								restoreTodo(id);
 								toggleView(1);
 							}}
 						>
 							<RiArrowGoBackFill className="restore__btn text-secondary_color text-2xl" />
 						</button>
-						<button onClick={() => taskRecycleBinDelete()}>
+						<button onClick={() => deleteTodoRecycleBin(id)}>
 							<VscChromeClose className="close__btn text-secondary_color text-2xl" />
 						</button>
 					</div>

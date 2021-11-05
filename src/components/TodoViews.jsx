@@ -2,9 +2,9 @@ import React from 'react';
 
 const TodoViews = ({
 	allTodos,
-	filterCompleteTasks,
-	filterIncompleteTasks,
-	filterDeleteTasks,
+	filterCompleteTodos,
+	filterIncompleteTodos,
+	filterDeleteTodos,
 	toggle,
 	toggleView,
 }) => {
@@ -15,45 +15,37 @@ const TodoViews = ({
 					allTodos();
 					toggleView(1);
 				}}
-				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${
-					toggle === 1 ? 'active' : ''
-				}`}
+				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${toggle === 1 && 'active'}`}
 			>
 				All
 			</button>
 
 			<button
 				onClick={() => {
-					filterCompleteTasks();
+					filterCompleteTodos();
 					toggleView(2);
 				}}
-				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${
-					toggle === 2 ? 'active' : ''
-				}`}
+				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${toggle === 2 && 'active'}`}
 			>
 				Complete
 			</button>
 
 			<button
 				onClick={() => {
-					filterIncompleteTasks();
+					filterIncompleteTodos();
 					toggleView(3);
 				}}
-				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${
-					toggle === 3 ? 'active' : ''
-				}`}
+				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${toggle === 3 && 'active'}`}
 			>
 				Incomplete
 			</button>
 
 			<button
 				onClick={() => {
-					filterDeleteTasks();
+					filterDeleteTodos();
 					toggleView(4);
 				}}
-				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${
-					toggle === 4 ? 'active' : ''
-				}`}
+				className={`font-semibold pb-4 w-1/2 sm:w-1/4 ${toggle === 4 && 'active'}`}
 			>
 				Recycle Bin
 			</button>
